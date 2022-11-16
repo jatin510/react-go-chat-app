@@ -1,4 +1,5 @@
 import { sendMsg, connect } from './api/index';
+import Header from './components/Header';
 
 function App() {
   function send() {
@@ -10,6 +11,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header />
       <button onClick={send}>Send</button>
     </div>
   );
