@@ -4,44 +4,16 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-
-	"github.com/gorilla/websocket"
+	"realtime-chat-go-react/pkg/websocket"
 )
 
-var upgrader = websocket.Upgrader{
-	ReadBufferSize:  1024,
-	WriteBufferSize: 1024,
-	CheckOrigin:     func(r *http.Request) bool { return true },
-}
-
-func reader(conn *websocket.Conn) {
-	for {
-		messageType, p, err := conn.ReadMessage()
-		if err != nil {
-			log.Println("error in ws reader", err)
-			return
-		}
-
-		fmt.Println(string(p))
-
-		if err := conn.WriteMessage(messageType, p); err != nil {
-			log.Println(err)
-			return
-		}
-	}
-}
-
 func serveWs(w http.ResponseWriter, r *http.Request) {
-	log.Println(r.Host)
-
-	// upgrade to ws connection
-	ws, err := upgrader.Upgrade(w, r, nil)
+	ws, err := websocket.Upgrade(w, r)
 	if err != nil {
-		log.Println(err)
+		fmt.Fprintf(w, "%+V\n", err)
 	}
-
-	// listen for new messages
-	reader(ws)
+	go websocket.Writer(ws)
+	websocket.Reader(ws)
 }
 
 func setupRoutes() {
