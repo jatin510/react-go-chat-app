@@ -2,7 +2,7 @@ const url = 'ws://localhost:8081/ws';
 
 const socket = new WebSocket(url);
 
-let connect = () => {
+let connect = (cb) => {
   console.log('Attempting websocket connection ... ');
 
   socket.onopen = () => {
@@ -10,7 +10,9 @@ let connect = () => {
   };
 
   socket.onmessage = (msg) => {
+    console.log('message received in frontend socket');
     console.log(msg);
+    cb(msg);
   };
 
   socket.onclose = (event) => {
