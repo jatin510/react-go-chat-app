@@ -14,16 +14,19 @@ function App() {
     });
   });
 
-  function send() {
-    sendMsg('hi');
+  function handleSend(event) {
+    if (event.keyCode === 13) {
+      sendMsg(event.target.value);
+      event.target.value = '';
+    }
   }
 
   return (
     <div className="App">
       <Header />
       <ChatHistory chatHistory={chatHistory} />
-      <ChatInput />
-      <button onClick={send}>Send</button>
+      <ChatInput onSend={handleSend} />
+      {/* <button onClick={send}>Send</button> */}
     </div>
   );
 }

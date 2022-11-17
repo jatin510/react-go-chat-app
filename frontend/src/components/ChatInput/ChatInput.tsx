@@ -1,11 +1,11 @@
 import './ChatInput.scss';
 
 export default function ChatInput(props) {
-  const { send } = props;
+  const { onSend } = props;
 
   return (
     <div className="ChatInput">
-      <input onKeyDown={send} />
+      <input onKeyDown={onSend} />
     </div>
   );
 }
