@@ -1,4 +1,4 @@
-const url = 'ws://localhost:8081/ws';
+const url = 'ws://194.195.113.217:8081/ws';
 
 const socket = new WebSocket(url);
 
