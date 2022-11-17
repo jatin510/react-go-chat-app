@@ -4,18 +4,14 @@ import ChatHistory from './components/ChatHistory';
 import Header from './components/Header';
 
 function App() {
-  const [chatHistory, setChatHistory] = useState([
-    { data: 'hello' },
-    { data: 'world' },
-    { data: 'hi from jatin' },
-  ]);
+  const [chatHistory, setChatHistory] = useState([]);
 
   useEffect(() => {
     connect((msg) => {
       console.log('new message is received');
-      setChatHistory([...chatHistory, msg]);
+      setChatHistory([...chatHistory, { data: msg.data }]);
     });
-  }, []);
+  });
 
   function send() {
     sendMsg('hi');
