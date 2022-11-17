@@ -5,7 +5,10 @@ export default function ChatInput(props) {
 
   return (
     <div className="ChatInput">
-      <input onKeyDown={onSend} />
+      <input
+        onKeyDown={onSend}
+        placeholder="Type a message.. Hit Enter to Send"
+      />
     </div>
   );
 }
