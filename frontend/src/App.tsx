@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { sendMsg, connect } from './api/index';
 import ChatHistory from './components/ChatHistory';
+import ChatInput from './components/ChatInput';
 import Header from './components/Header';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
     <div className="App">
       <Header />
       <ChatHistory chatHistory={chatHistory} />
+      <ChatInput />
       <button onClick={send}>Send</button>
     </div>
   );
