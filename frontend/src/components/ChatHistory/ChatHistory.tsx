@@ -1,11 +1,10 @@
+import Message from '../Message';
 import './ChatHistory.scss';
 
 export default function ChatHistory(props) {
   const { chatHistory } = props;
 
-  const messages = chatHistory.map((msg, index) => (
-    <p key={index}>{msg.data}</p>
-  ));
+  const messages = chatHistory.map((msg) => <Message message={msg.data} />);
 
   return (
     <>
